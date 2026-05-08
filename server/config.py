@@ -82,9 +82,8 @@ def load_config() -> AppConfig:
 
 def load_mysql_settings(app_env: str) -> dict[str, str | int]:
     is_deployed = app_env.lower() == "production" or bool(os.environ.get("RAILWAY_ENVIRONMENT"))
-    url_settings = parse_mysql_url(
-        first_env("MYSQL_URL", "MYSQL_PRIVATE_URL", "MYSQL_PUBLIC_URL", "DATABASE_URL")
-    )
+    raw_mysql_url = first_env("MYSQL_URL", "MYSQL_PRIVATE_URL", "MYSQL_PUBLIC_URL", "DATABASE_URL")
+    url_settings = parse_mysql_url(raw_mysql_url)
 
     if is_deployed:
         host = url_settings.get("host") or first_env("MYSQLHOST", "MYSQL_HOST", default="127.0.0.1")
@@ -121,7 +120,8 @@ def load_mysql_settings(app_env: str) -> dict[str, str | int]:
         raise RuntimeError(
             "MySQL is still pointing at a local host in production. Add a Railway MySQL service "
             "and expose MYSQL_URL, or set MYSQLHOST, MYSQLPORT, MYSQLUSER, MYSQLPASSWORD and "
-            "MYSQLDATABASE. Remove MYSQL_HOST=127.0.0.1 from the Railway web service."
+            "MYSQLDATABASE. Remove MYSQL_HOST=127.0.0.1 from the Railway web service. "
+            f"Detected MySQL env: {describe_mysql_environment(raw_mysql_url, url_settings, host)}"
         )
 
     return {
@@ -137,7 +137,7 @@ def parse_mysql_url(value: str | None) -> dict[str, str | int]:
     if not value:
         return {}
 
-    parsed = urlparse(value)
+    parsed = urlparse(clean_env_value(value.strip()))
 
     if parsed.scheme not in {"mysql", "mysql+pymysql"}:
         return {}
@@ -155,6 +155,44 @@ def parse_mysql_url(value: str | None) -> dict[str, str | int]:
 
 def is_local_mysql_host(value: str) -> bool:
     return value.strip().lower() in {"127.0.0.1", "localhost", "::1", "0.0.0.0"}
+
+
+def describe_mysql_environment(
+    raw_mysql_url: str | None,
+    url_settings: dict[str, str | int],
+    selected_host: str | int | None,
+) -> str:
+    keys = (
+        "MYSQL_URL",
+        "MYSQL_PRIVATE_URL",
+        "MYSQL_PUBLIC_URL",
+        "DATABASE_URL",
+        "MYSQLHOST",
+        "MYSQL_HOST",
+        "MYSQLPORT",
+        "MYSQL_PORT",
+        "MYSQLUSER",
+        "MYSQL_USER",
+        "MYSQLPASSWORD",
+        "MYSQL_PASSWORD",
+        "MYSQLDATABASE",
+        "MYSQL_DATABASE",
+    )
+    present_keys = [key for key in keys if os.environ.get(key) not in (None, "")]
+    url_state = "missing"
+
+    if raw_mysql_url:
+        parsed = urlparse(clean_env_value(raw_mysql_url.strip()))
+        url_state = (
+            f"present scheme={parsed.scheme or 'none'} "
+            f"host={parsed.hostname or 'not-parsed'} "
+            f"parsed_host={url_settings.get('host') or 'none'}"
+        )
+
+    return (
+        f"present_keys={present_keys or ['none']}; "
+        f"url={url_state}; selected_host={selected_host}"
+    )
 
 
 def first_env(*keys: str, default: str | int | None = None):
