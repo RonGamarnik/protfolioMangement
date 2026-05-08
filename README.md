@@ -190,7 +190,8 @@ Get-Process python | Stop-Process
 
 ## Railway deployment notes
 
-The app can run on Railway with the included `Procfile`.
+The app can run on Railway with the included `Dockerfile`. Railway should detect the `Dockerfile`
+and build the Python server from the official Python image.
 
 Set these environment variables in Railway instead of committing a `.env` file.
 Do not set `MYSQL_HOST=127.0.0.1` on Railway. `127.0.0.1` means "inside the web container",

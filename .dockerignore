@@ -1,0 +1,15 @@
+.git
+.gitignore
+.env
+.ENV
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+venv/
+server.err.log
+server.out.log
+*.png
+data/*.db
+data/*.sqlite
