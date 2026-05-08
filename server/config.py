@@ -8,6 +8,22 @@ from urllib.parse import unquote, urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 ENV_FILES = (ROOT / ".env", ROOT / ".ENV")
+MYSQL_URL_ENV_KEYS = (
+    "MYSQL_URL",
+    "MYSQL_PRIVATE_URL",
+    "MYSQL_PUBLIC_URL",
+    "MYSQLURL",
+    "SQLURL",
+    "SQL_URL",
+    "DATABASE_URL",
+    "DATABASE_PRIVATE_URL",
+    "DATABASE_PUBLIC_URL",
+)
+MYSQL_HOST_ENV_KEYS = ("MYSQLHOST", "MYSQL_HOST", "MYSQL_HOSTNAME")
+MYSQL_PORT_ENV_KEYS = ("MYSQLPORT", "MYSQL_PORT")
+MYSQL_USER_ENV_KEYS = ("MYSQLUSER", "MYSQL_USER")
+MYSQL_PASSWORD_ENV_KEYS = ("MYSQLPASSWORD", "MYSQL_PASSWORD", "MYSQL_ROOT_PASSWORD")
+MYSQL_DATABASE_ENV_KEYS = ("MYSQLDATABASE", "MYSQL_DATABASE", "MYSQL_DB", "DB_NAME")
 
 
 @dataclass(frozen=True)
@@ -82,37 +98,42 @@ def load_config() -> AppConfig:
 
 def load_mysql_settings(app_env: str) -> dict[str, str | int]:
     is_deployed = app_env.lower() == "production" or bool(os.environ.get("RAILWAY_ENVIRONMENT"))
-    raw_mysql_url = first_env("MYSQL_URL", "MYSQL_PRIVATE_URL", "MYSQL_PUBLIC_URL", "DATABASE_URL")
+    raw_mysql_url = first_env(*MYSQL_URL_ENV_KEYS)
     url_settings = parse_mysql_url(raw_mysql_url)
 
     if is_deployed:
-        host = url_settings.get("host") or first_env("MYSQLHOST", "MYSQL_HOST", default="127.0.0.1")
-        port = url_settings.get("port") or first_env("MYSQLPORT", "MYSQL_PORT", default="3306")
-        user = url_settings.get("user") or first_env("MYSQLUSER", "MYSQL_USER", default="root")
-        password = url_settings.get("password") or first_env(
-            "MYSQLPASSWORD",
-            "MYSQL_ROOT_PASSWORD",
-            "MYSQL_PASSWORD",
-            default="",
-        )
+        host = url_settings.get("host") or first_env(*MYSQL_HOST_ENV_KEYS, default="127.0.0.1")
+        port = url_settings.get("port") or first_env(*MYSQL_PORT_ENV_KEYS, default="3306")
+        user = url_settings.get("user") or first_env(*MYSQL_USER_ENV_KEYS, default="root")
+        password = url_settings.get("password") or first_env(*MYSQL_PASSWORD_ENV_KEYS, default="")
         database = url_settings.get("database") or first_env(
-            "MYSQLDATABASE",
-            "MYSQL_DATABASE",
+            *MYSQL_DATABASE_ENV_KEYS,
             default="portfolio_live",
         )
     else:
-        host = first_env("MYSQL_HOST", "MYSQLHOST", default=url_settings.get("host") or "127.0.0.1")
-        port = first_env("MYSQL_PORT", "MYSQLPORT", default=url_settings.get("port") or "3305")
-        user = first_env("MYSQL_USER", "MYSQLUSER", default=url_settings.get("user") or "root")
+        host = first_env(
+            "MYSQL_HOST",
+            *MYSQL_HOST_ENV_KEYS,
+            default=url_settings.get("host") or "127.0.0.1",
+        )
+        port = first_env(
+            "MYSQL_PORT",
+            *MYSQL_PORT_ENV_KEYS,
+            default=url_settings.get("port") or "3305",
+        )
+        user = first_env(
+            "MYSQL_USER",
+            *MYSQL_USER_ENV_KEYS,
+            default=url_settings.get("user") or "root",
+        )
         password = first_env(
             "MYSQL_PASSWORD",
-            "MYSQLPASSWORD",
-            "MYSQL_ROOT_PASSWORD",
+            *MYSQL_PASSWORD_ENV_KEYS,
             default=url_settings.get("password") or "",
         )
         database = first_env(
             "MYSQL_DATABASE",
-            "MYSQLDATABASE",
+            *MYSQL_DATABASE_ENV_KEYS,
             default=url_settings.get("database") or "portfolio_live",
         )
 
@@ -163,20 +184,12 @@ def describe_mysql_environment(
     selected_host: str | int | None,
 ) -> str:
     keys = (
-        "MYSQL_URL",
-        "MYSQL_PRIVATE_URL",
-        "MYSQL_PUBLIC_URL",
-        "DATABASE_URL",
-        "MYSQLHOST",
-        "MYSQL_HOST",
-        "MYSQLPORT",
-        "MYSQL_PORT",
-        "MYSQLUSER",
-        "MYSQL_USER",
-        "MYSQLPASSWORD",
-        "MYSQL_PASSWORD",
-        "MYSQLDATABASE",
-        "MYSQL_DATABASE",
+        *MYSQL_URL_ENV_KEYS,
+        *MYSQL_HOST_ENV_KEYS,
+        *MYSQL_PORT_ENV_KEYS,
+        *MYSQL_USER_ENV_KEYS,
+        *MYSQL_PASSWORD_ENV_KEYS,
+        *MYSQL_DATABASE_ENV_KEYS,
     )
     present_keys = [key for key in keys if os.environ.get(key) not in (None, "")]
     url_state = "missing"
@@ -200,12 +213,7 @@ def describe_mysql_environment(
 def normalize_connection_url(value: str) -> str:
     cleaned = clean_env_value(value.strip())
 
-    for key in (
-        "MYSQL_URL",
-        "MYSQL_PRIVATE_URL",
-        "MYSQL_PUBLIC_URL",
-        "DATABASE_URL",
-    ):
+    for key in MYSQL_URL_ENV_KEYS:
         prefix = f"{key}="
 
         if cleaned.upper().startswith(prefix):
@@ -220,10 +228,7 @@ def connection_url_shape(value: str) -> str:
     if cleaned.startswith("${{") and cleaned.endswith("}}"):
         return "unresolved-reference"
 
-    if any(
-        cleaned.upper().startswith(f"{key}=")
-        for key in ("MYSQL_URL", "MYSQL_PRIVATE_URL", "MYSQL_PUBLIC_URL", "DATABASE_URL")
-    ):
+    if any(cleaned.upper().startswith(f"{key}=") for key in MYSQL_URL_ENV_KEYS):
         return "key-value-assignment"
 
     if "://" in cleaned:
