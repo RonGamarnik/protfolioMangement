@@ -241,4 +241,8 @@ OPENAI_API_KEY
 OPENAI_MODEL
 ```
 
+When editing `MYSQL_URL` through the normal Railway variable form, put `MYSQL_URL` only in the
+name field. The value field should contain only `${{MySQL.MYSQL_URL}}` or the `mysql://...`
+connection string, not `MYSQL_URL=...`.
+
 Do not set `HOST` on Railway unless needed; in production the server defaults to `0.0.0.0`.

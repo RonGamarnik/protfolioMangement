@@ -137,7 +137,7 @@ def parse_mysql_url(value: str | None) -> dict[str, str | int]:
     if not value:
         return {}
 
-    parsed = urlparse(clean_env_value(value.strip()))
+    parsed = urlparse(normalize_connection_url(value))
 
     if parsed.scheme not in {"mysql", "mysql+pymysql"}:
         return {}
@@ -182,17 +182,54 @@ def describe_mysql_environment(
     url_state = "missing"
 
     if raw_mysql_url:
-        parsed = urlparse(clean_env_value(raw_mysql_url.strip()))
+        normalized_url = normalize_connection_url(raw_mysql_url)
+        parsed = urlparse(normalized_url)
         url_state = (
             f"present scheme={parsed.scheme or 'none'} "
             f"host={parsed.hostname or 'not-parsed'} "
-            f"parsed_host={url_settings.get('host') or 'none'}"
+            f"parsed_host={url_settings.get('host') or 'none'} "
+            f"shape={connection_url_shape(raw_mysql_url)}"
         )
 
     return (
         f"present_keys={present_keys or ['none']}; "
         f"url={url_state}; selected_host={selected_host}"
     )
+
+
+def normalize_connection_url(value: str) -> str:
+    cleaned = clean_env_value(value.strip())
+
+    for key in (
+        "MYSQL_URL",
+        "MYSQL_PRIVATE_URL",
+        "MYSQL_PUBLIC_URL",
+        "DATABASE_URL",
+    ):
+        prefix = f"{key}="
+
+        if cleaned.upper().startswith(prefix):
+            return clean_env_value(cleaned[len(prefix) :].strip())
+
+    return cleaned
+
+
+def connection_url_shape(value: str) -> str:
+    cleaned = clean_env_value(value.strip())
+
+    if cleaned.startswith("${{") and cleaned.endswith("}}"):
+        return "unresolved-reference"
+
+    if any(
+        cleaned.upper().startswith(f"{key}=")
+        for key in ("MYSQL_URL", "MYSQL_PRIVATE_URL", "MYSQL_PUBLIC_URL", "DATABASE_URL")
+    ):
+        return "key-value-assignment"
+
+    if "://" in cleaned:
+        return "url-like"
+
+    return "plain-text"
 
 
 def first_env(*keys: str, default: str | int | None = None):
