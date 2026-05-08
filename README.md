@@ -192,16 +192,43 @@ Get-Process python | Stop-Process
 
 The app can run on Railway with the included `Procfile`.
 
-Set these environment variables in Railway instead of committing a `.env` file:
+Set these environment variables in Railway instead of committing a `.env` file.
+Do not set `MYSQL_HOST=127.0.0.1` on Railway. `127.0.0.1` means "inside the web container",
+not the Railway MySQL container, so the app will crash with `Connection refused`.
+
+Recommended MySQL setup:
+
+1. Add a Railway MySQL service to the same Railway project.
+2. In the web service variables, expose either `MYSQL_URL` from the MySQL service, or expose the
+   Railway MySQL variables individually.
+
+Supported MySQL variables:
 
 ```text
-APP_ENV=production
-APP_BASE_URL=https://your-railway-domain
+MYSQL_URL
+MYSQL_PRIVATE_URL
+MYSQL_PUBLIC_URL
+DATABASE_URL
+MYSQLHOST
+MYSQLPORT
+MYSQLUSER
+MYSQLPASSWORD
+MYSQLDATABASE
 MYSQL_HOST
 MYSQL_PORT
 MYSQL_USER
 MYSQL_PASSWORD
 MYSQL_DATABASE
+```
+
+Use only one style when possible. For Railway, prefer `MYSQL_URL` or the `MYSQLHOST` style.
+
+Production variables:
+
+```text
+APP_ENV=production
+APP_BASE_URL=https://your-railway-domain
+MYSQL_URL
 SMTP_HOST
 SMTP_PORT
 SMTP_USER
