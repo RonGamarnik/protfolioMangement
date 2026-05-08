@@ -1,0 +1,54 @@
+<div class="app-header panel">
+  <div class="app-header__brand">
+    <span class="brand-mark" aria-hidden="true">
+      <i data-lucide="chart-candlestick"></i>
+    </span>
+    <div>
+      <h1>Portfolio Live</h1>
+      <p>תיק מניות בדולרים ובשקלים</p>
+    </div>
+  </div>
+  <div class="app-header__actions">
+    <div class="portfolio-switcher" data-field="portfolio-switcher">
+      <i data-lucide="folder-kanban" aria-hidden="true"></i>
+      <select data-field="portfolio-select" aria-label="Portfolio"></select>
+      <button class="icon-button" type="button" data-action="manage-portfolio" aria-label="Manage portfolio" title="Manage portfolio">
+        <i data-lucide="settings-2"></i>
+      </button>
+      <button class="icon-button" type="button" data-action="create-portfolio" aria-label="New portfolio" title="New portfolio">
+        <i data-lucide="plus"></i>
+      </button>
+      <button class="icon-button" type="button" data-action="share-portfolio" aria-label="Share portfolio" title="Share portfolio">
+        <i data-lucide="share-2"></i>
+      </button>
+      <button class="icon-button portfolio-requests-button" type="button" data-action="portfolio-requests" aria-label="Portfolio requests" title="Portfolio requests">
+        <i data-lucide="bell"></i>
+        <span data-field="portfolio-requests-count" hidden>0</span>
+      </button>
+    </div>
+    <span class="account-chip" title="חשבון מחובר">
+      <i data-lucide="user-round"></i>
+      <span data-user-name></span>
+    </span>
+    <button class="ubs-mode-button" type="button" data-action="toggle-ubs-mode" aria-pressed="false" title="UBS Mode">
+      <i data-lucide="shield"></i>
+      <span>UBS</span>
+    </button>
+    <button class="ai-header-button" type="button" data-action="portfolio-ai" title="Portfolio Intelligence">
+      <i data-lucide="sparkles"></i>
+      <span>AI</span>
+    </button>
+    <button class="icon-button" type="button" data-action="refresh" aria-label="רענון נתוני שוק">
+      <i data-lucide="refresh-cw"></i>
+    </button>
+    <button class="icon-button" type="button" data-action="settings" aria-label="הגדרות">
+      <i data-lucide="settings"></i>
+    </button>
+    <button class="icon-button icon-button--danger" type="button" data-action="clear" aria-label="מחיקת כל התיק" title="מחיקת כל התיק">
+      <i data-lucide="trash-2"></i>
+    </button>
+    <button class="icon-button" type="button" data-action="logout" aria-label="התנתקות">
+      <i data-lucide="log-out"></i>
+    </button>
+  </div>
+</div>

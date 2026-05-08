@@ -1,0 +1,14 @@
+.env
+.ENV
+.env.*
+!.env.example
+server.err.log
+server.out.log
+__pycache__/
+*.pyc
+*.png
+data/*.db
+data/*.sqlite
+.venv/
+venv/
+.DS_Store

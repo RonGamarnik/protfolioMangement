@@ -1,0 +1,67 @@
+<section class="allocation-planner panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h2>חלוקה באחוזים</h2>
+      <p>סכום כולל, אחוז לכל סימול ומחיר קנייה</p>
+    </div>
+    <button class="icon-button" type="button" data-action="close-allocation-panel" aria-label="סגירת עריכת תיק">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <form class="allocation-planner__body" data-field="form">
+    <div class="allocation-layout">
+      <aside class="allocation-visual">
+        <section class="allocation-visual__section">
+          <div class="allocation-visual__head">
+            <strong>חלוקת התיק</strong>
+            <span data-field="allocation-mode-label">לפי שווי נוכחי</span>
+          </div>
+          <div class="allocation-pie" data-field="pie"></div>
+          <div class="allocation-legend" data-field="legend"></div>
+        </section>
+
+        <section class="allocation-visual__section allocation-visual__section--sector">
+          <div class="allocation-visual__head">
+            <strong>סקטורים</strong>
+            <span>Yahoo / זיהוי פנימי</span>
+          </div>
+          <div class="allocation-pie allocation-pie--small" data-field="sector-pie"></div>
+          <div class="allocation-legend allocation-legend--compact" data-field="sector-legend"></div>
+        </section>
+      </aside>
+
+      <section class="allocation-editor">
+        <div class="allocation-source">
+          <span>טעינת אחוזים לפי</span>
+          <div class="allocation-source__control" role="group" aria-label="בחירת בסיס חלוקה">
+            <button type="button" data-action="source-current" aria-pressed="true">
+              <i data-lucide="line-chart"></i>
+              שווי נוכחי
+            </button>
+            <button type="button" data-action="source-buy" aria-pressed="false">
+              <i data-lucide="receipt"></i>
+              קנייה
+            </button>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>סכום השקעה כולל בדולר</span>
+          <input data-field="total-budget" type="number" min="0" step="0.01" required />
+        </label>
+
+        <div class="allocation-rows" data-field="rows"></div>
+      </section>
+    </div>
+
+    <div class="allocation-planner__footer">
+      <button class="ghost-button" type="button" data-action="add-row">
+        <i data-lucide="plus"></i>
+        הוסף שורה
+      </button>
+      <span class="allocation-total" data-field="total-percent">0%</span>
+      <button class="button button--secondary" type="submit">שמור תיק</button>
+    </div>
+  </form>
+</section>

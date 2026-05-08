@@ -1,0 +1,44 @@
+<section class="settings-panel panel" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+  <div class="panel-header settings-panel__header">
+    <div class="panel-title">
+      <h2 id="settings-title">הגדרות</h2>
+      <p>שמירה לקובץ, מצב תצוגה ורענון מחירים</p>
+    </div>
+    <button class="icon-button" type="button" data-action="close-settings" aria-label="סגירת הגדרות">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <div class="settings-panel__body">
+    <label class="toggle-row">
+      <span>
+        <strong>Dark mode</strong>
+        <small data-field="theme-label">--</small>
+      </span>
+      <input type="checkbox" data-field="theme-toggle" />
+    </label>
+
+    <label class="toggle-row">
+      <span>
+        <strong>רענון אוטומטי</strong>
+        <small data-field="auto-label">--</small>
+      </span>
+      <input type="checkbox" data-field="auto-refresh" />
+    </label>
+
+    <label class="field">
+      <span>תדירות רענון</span>
+      <select data-field="refresh-seconds">
+        <option value="30">30 שניות</option>
+        <option value="60">60 שניות</option>
+        <option value="120">2 דקות</option>
+        <option value="300">5 דקות</option>
+      </select>
+    </label>
+
+    <div class="storage-status">
+      <i data-lucide="database"></i>
+      <span>בפיתוח מקומי התיק נשמר גם לקובץ <b>data/portfolio.json</b> כשמריצים עם שרת ה־dev.</span>
+    </div>
+  </div>
+</section>

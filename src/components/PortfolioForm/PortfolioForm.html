@@ -1,0 +1,41 @@
+<section class="portfolio-form panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h2 data-field="title">הוספת מנייה</h2>
+      <p data-field="subtitle">סכום, מחיר קנייה וכמות מחושבת</p>
+    </div>
+    <button class="icon-button" type="button" data-action="reset" aria-label="סגירת טופס">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <form class="portfolio-form__body" data-field="form">
+    <label class="field">
+      <span>סימול</span>
+      <input name="symbol" autocomplete="off" placeholder="AAPL" required />
+    </label>
+    <label class="field">
+      <span>סכום השקעה בדולר</span>
+      <input name="investmentUsd" type="number" min="0" step="0.01" placeholder="2500" required />
+    </label>
+    <label class="field">
+      <span data-field="buy-price-label">מחיר קנייה ב-USD</span>
+      <input name="buyPrice" type="number" min="0" step="0.01" placeholder="185.40" required />
+    </label>
+
+    <p class="currency-note" data-field="currency-note" hidden></p>
+
+    <div class="share-preview">
+      <span>כמות מניות</span>
+      <strong data-field="shares-preview">0</strong>
+    </div>
+
+    <div class="portfolio-form__actions">
+      <button class="ghost-button" type="button" data-action="use-current-price">
+        <i data-lucide="target"></i>
+        מחיר נוכחי
+      </button>
+      <button class="button" type="submit" data-field="submit-label">הוסף</button>
+    </div>
+  </form>
+</section>

@@ -1,0 +1,120 @@
+<tr class="holding-row" data-id="{{id}}" aria-expanded="false">
+  <td>
+    <button class="row-toggle" type="button" data-action="toggle-details" data-id="{{id}}" aria-label="פתיחת פרטים על {{symbol}}">
+      <i data-lucide="chevron-down"></i>
+    </button>
+  </td>
+  <td>
+    <div class="symbol-cell">
+      <strong data-field="symbol">{{symbol}}</strong>
+      <span data-field="exchange">{{exchange}}</span>
+      <span class="market-session-chip {{sessionClass}}" data-field="marketSession" title="{{sessionTitle}}">
+        <i data-lucide="{{sessionIcon}}"></i>
+        <span data-field="sessionLabel">{{sessionLabel}}</span>
+      </span>
+    </div>
+  </td>
+  <td class="number-cell" data-field="shares">{{shares}}</td>
+  <td class="number-cell" data-field="buyPrice">{{buyPrice}}</td>
+  <td>
+    <div class="money-cell">
+      <strong data-field="investedUsd">{{investedUsd}}</strong>
+      <span data-field="investedIls">{{investedIls}}</span>
+    </div>
+  </td>
+  <td>
+    <div class="money-cell">
+      <strong data-field="currentPrice">{{currentPrice}}</strong>
+      <span data-field="quoteTime">{{quoteTime}}</span>
+    </div>
+  </td>
+  <td>
+    <div class="money-cell">
+      <strong data-field="currentValueUsd">{{currentValueUsd}}</strong>
+      <span data-field="currentValueIls">{{currentValueIls}}</span>
+    </div>
+  </td>
+  <td>
+    <div class="money-cell {{pnlClass}}" data-field="pnlCell">
+      <strong data-field="pnlUsd">{{pnlUsd}}</strong>
+      <span data-field="pnlPercent">{{pnlPercent}}</span>
+    </div>
+  </td>
+  <td>
+    <div class="money-cell {{dailyClass}}" data-field="dailyCell">
+      <strong data-field="dailyUsd">{{dailyUsd}}</strong>
+      <span data-field="dailyPercent">{{dailyPercent}}</span>
+      <small class="extended-move" data-field="extendedMove" title="{{extendedTitle}}">
+        <i data-lucide="{{extendedIcon}}"></i>
+        <span data-field="extendedMoveText">{{extendedMoveText}}</span>
+      </small>
+    </div>
+  </td>
+  <td>
+    <div class="allocation-cell">
+      <span data-field="allocation">{{allocation}}</span>
+      <meter data-field="allocationMeter" min="0" max="100" value="{{allocationValue}}"></meter>
+    </div>
+  </td>
+</tr>
+<tr class="holding-detail-row" data-detail-id="{{id}}" hidden>
+  <td colspan="10">
+    <div class="holding-detail">
+      <div class="holding-detail__head">
+        <div>
+          <strong data-field="detailName">{{detailName}}</strong>
+          <span data-field="detailMeta">{{detailMeta}}</span>
+        </div>
+        <div class="holding-detail__actions">
+          <button class="ghost-button" type="button" data-action="edit" data-id="{{id}}">
+            <i data-lucide="pencil"></i>
+            עריכה
+          </button>
+          <button class="ghost-button ghost-button--danger" type="button" data-action="delete" data-id="{{id}}">
+            <i data-lucide="trash-2"></i>
+            מחיקה
+          </button>
+        </div>
+      </div>
+
+      <div class="holding-detail__metrics holding-detail__metrics--compact">
+        <article>
+          <span>סקטור</span>
+          <strong data-field="sector">{{sector}}</strong>
+        </article>
+        <article>
+          <span>בורסה</span>
+          <strong data-field="fullExchange">{{fullExchange}}</strong>
+        </article>
+        <article>
+          <span>מטבע מסחר</span>
+          <strong data-field="quoteCurrencyDetail">{{quoteCurrencyDetail}}</strong>
+        </article>
+        <article>
+          <span>מטבע קנייה</span>
+          <strong data-field="buyCurrencyDetail">{{buyCurrencyDetail}}</strong>
+        </article>
+        <article>
+          <span>שער מטבע ל-USD</span>
+          <strong data-field="currencyRate">{{currencyRate}}</strong>
+        </article>
+        <article>
+          <span>מחיר קודם</span>
+          <strong data-field="previousClose">{{previousClose}}</strong>
+        </article>
+        <article>
+          <span>שינוי יומי</span>
+          <strong data-field="dailyDetail">{{dailyDetail}}</strong>
+        </article>
+        <article>
+          <span>מקור מחיר</span>
+          <strong data-field="dataSource">{{dataSource}}</strong>
+        </article>
+        <article>
+          <span>מצב מסחר</span>
+          <strong data-field="sessionDetail">{{sessionDetail}}</strong>
+        </article>
+      </div>
+    </div>
+  </td>
+</tr>

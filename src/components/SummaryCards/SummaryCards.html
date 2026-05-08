@@ -1,0 +1,56 @@
+<section class="summary-grid" aria-label="סיכום תיק">
+  <article class="summary-card summary-card--primary panel">
+    <div class="summary-card__top">
+      <span>שווי נוכחי USD</span>
+      <i data-lucide="wallet"></i>
+    </div>
+    <strong data-field="current-usd">--</strong>
+    <small data-field="invested-usd">--</small>
+  </article>
+
+  <article class="summary-card panel">
+    <div class="summary-card__top">
+      <span>שווי בשקלים</span>
+      <i data-lucide="badge-shekel"></i>
+    </div>
+    <strong data-field="current-ils">--</strong>
+    <small data-field="invested-ils">--</small>
+  </article>
+
+  <article class="summary-card panel" data-field="pnl-card">
+    <div class="summary-card__top">
+      <span>תשואה USD</span>
+      <i data-lucide="activity"></i>
+    </div>
+    <strong data-field="pnl-usd">--</strong>
+    <small data-field="pnl-percent">--</small>
+  </article>
+
+  <article class="summary-card panel" data-field="daily-card">
+    <div class="summary-card__top">
+      <span>תשואה יומית USD</span>
+      <i data-lucide="line-chart"></i>
+    </div>
+    <strong data-field="daily-usd">--</strong>
+    <small data-field="daily-percent">--</small>
+  </article>
+
+  <article class="summary-card summary-card--ubs panel" data-field="ubs-card" hidden>
+    <div class="summary-card__top">
+      <span>UBS Principal</span>
+      <i data-lucide="shield"></i>
+    </div>
+    <strong data-field="ubs-principal-usd">--</strong>
+    <small data-field="ubs-principal-ils">Excluded from return</small>
+  </article>
+
+  <article class="summary-card summary-card--visual panel" role="button" tabindex="0" data-action="open-allocation-chart">
+    <div class="summary-card__top">
+      <span>חשיפה</span>
+      <i data-lucide="pie-chart"></i>
+    </div>
+    <div class="allocation-orbit">
+      <div class="allocation-strip" data-field="allocation-strip"></div>
+    </div>
+  </article>
+</section>

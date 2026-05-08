@@ -1,0 +1,54 @@
+<section class="excel-import panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h2>ייבוא מאקסל</h2>
+      <p>שם, סימול, שער בפועל וכמות</p>
+    </div>
+    <button class="icon-button" type="button" data-action="close-excel-import-panel" aria-label="סגירת ייבוא">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <form class="excel-import__body" data-field="form">
+    <label class="field excel-import__paste">
+      <span>הדבקת טבלה</span>
+      <textarea
+        data-field="paste"
+        spellcheck="false"
+        placeholder="שם	מס׳ נייר	שער בפועל	כמות&#10;Rheinmetall	RHM	€1,438.11	38.85"
+      ></textarea>
+    </label>
+
+    <div class="excel-import__status" data-field="status">אין נתונים</div>
+
+    <div class="excel-import__preview" data-field="preview" hidden>
+      <table>
+        <thead>
+          <tr>
+            <th>שם</th>
+            <th>סימול</th>
+            <th>מטבע</th>
+            <th>שער</th>
+            <th>כמות</th>
+            <th>סכום</th>
+          </tr>
+        </thead>
+        <tbody data-field="preview-rows"></tbody>
+      </table>
+      <p data-field="preview-more" hidden></p>
+    </div>
+
+    <div class="excel-import__errors" data-field="errors" hidden></div>
+
+    <div class="excel-import__actions">
+      <button class="ghost-button" type="button" data-action="clear-paste">
+        <i data-lucide="eraser"></i>
+        נקה
+      </button>
+      <button class="button" type="submit" data-field="submit" disabled>
+        <i data-lucide="clipboard-check"></i>
+        הוסף לתיק
+      </button>
+    </div>
+  </form>
+</section>

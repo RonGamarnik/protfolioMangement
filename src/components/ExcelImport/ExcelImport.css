@@ -1,0 +1,128 @@
+.excel-import__body {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.excel-import__paste textarea {
+  width: 100%;
+  min-height: 180px;
+  max-height: 38vh;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  color: var(--ink-strong);
+  direction: ltr;
+  font-family: Consolas, "SFMono-Regular", monospace;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  outline: none;
+  resize: vertical;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.excel-import__paste textarea:focus {
+  border-color: var(--accent);
+  box-shadow: var(--focus);
+}
+
+.excel-import__status {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 740;
+}
+
+.excel-import__preview {
+  max-height: 280px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+
+.excel-import__preview table {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
+}
+
+.excel-import__preview th,
+.excel-import__preview td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  font-size: 0.86rem;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.excel-import__preview th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--surface-soft);
+  color: var(--muted);
+  font-weight: 760;
+}
+
+.excel-import__preview tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.excel-import__preview .number-cell {
+  direction: ltr;
+  text-align: left;
+  font-variant-numeric: tabular-nums;
+}
+
+.excel-import__preview p {
+  margin: 0;
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 720;
+}
+
+.excel-import__errors {
+  display: grid;
+  gap: 6px;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--red) 38%, var(--line));
+  border-radius: var(--radius-sm);
+  background: var(--red-soft);
+  color: var(--red);
+  font-size: 0.84rem;
+  font-weight: 720;
+}
+
+.excel-import__errors[hidden] {
+  display: none;
+}
+
+.excel-import__errors p {
+  margin: 0;
+}
+
+.excel-import__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+@media (max-width: 540px) {
+  .excel-import__actions {
+    grid-template-columns: 1fr;
+  }
+}

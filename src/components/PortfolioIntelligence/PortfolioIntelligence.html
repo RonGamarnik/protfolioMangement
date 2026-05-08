@@ -1,0 +1,54 @@
+<section class="portfolio-intelligence panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h2>Portfolio Intelligence</h2>
+      <p>AI brief, risk radar and what-if checks for the active portfolio</p>
+    </div>
+    <button class="icon-button" type="button" data-action="close-intelligence" aria-label="Close intelligence">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <div class="portfolio-intelligence__body">
+    <section class="ai-brief">
+      <div class="ai-brief__header">
+        <span class="ai-brief__mark"><i data-lucide="sparkles"></i></span>
+        <div>
+          <strong>AI Portfolio Brief</strong>
+          <span data-field="ai-source">Local analysis ready</span>
+        </div>
+        <button class="button" type="button" data-action="run-ai">
+          <i data-lucide="wand-sparkles"></i>
+          <span data-field="ai-button-label">Run AI</span>
+        </button>
+      </div>
+      <pre data-field="ai-text">לחץ Run AI כדי לקבל דעה על התיק, רעיונות לשיפור וצפי היפותטי להמשך.</pre>
+    </section>
+
+    <section class="intelligence-grid">
+      <article class="intelligence-block">
+        <div class="intelligence-block__title">
+          <i data-lucide="radar"></i>
+          <strong>Risk Radar</strong>
+        </div>
+        <div class="metric-list" data-field="risk-radar"></div>
+      </article>
+
+      <article class="intelligence-block">
+        <div class="intelligence-block__title">
+          <i data-lucide="activity"></i>
+          <strong>What-If Shock Lab</strong>
+        </div>
+        <div class="metric-list" data-field="shock-lab"></div>
+      </article>
+
+      <article class="intelligence-block intelligence-block--wide">
+        <div class="intelligence-block__title">
+          <i data-lucide="scale"></i>
+          <strong>Rebalance Ideas</strong>
+        </div>
+        <div class="rebalance-list" data-field="rebalance-ideas"></div>
+      </article>
+    </section>
+  </div>
+</section>

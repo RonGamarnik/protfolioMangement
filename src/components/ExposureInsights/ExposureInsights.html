@@ -1,0 +1,50 @@
+<section class="exposure-insights panel">
+  <div class="panel-header">
+    <div class="panel-title">
+      <h2>מפת חשיפה</h2>
+      <p>חלוקת התיק לפי שווי נוכחי, סקטורים וריכוזיות</p>
+    </div>
+    <button class="icon-button" type="button" data-action="close-exposure" aria-label="סגירת חשיפה">
+      <i data-lucide="x"></i>
+    </button>
+  </div>
+
+  <div class="exposure-insights__body">
+    <section class="exposure-hero">
+      <div class="exposure-chart">
+        <div class="exposure-chart__pie" data-field="portfolio-pie"></div>
+        <div>
+          <span>שווי נוכחי</span>
+          <strong data-field="portfolio-value">--</strong>
+          <em data-field="daily-move">--</em>
+        </div>
+      </div>
+      <div class="exposure-legend" data-field="portfolio-legend"></div>
+    </section>
+
+    <section class="exposure-hero exposure-hero--sector">
+      <div class="exposure-chart">
+        <div class="exposure-chart__pie exposure-chart__pie--small" data-field="sector-pie"></div>
+        <div>
+          <span>סקטור מוביל</span>
+          <strong data-field="top-sector">--</strong>
+          <em data-field="sector-count">--</em>
+        </div>
+      </div>
+      <div class="exposure-legend" data-field="sector-legend"></div>
+    </section>
+
+    <section class="exposure-stats">
+      <article>
+        <span>אחזקה מובילה</span>
+        <strong data-field="top-holding">--</strong>
+      </article>
+      <article>
+        <span>ריכוזיות Top 3</span>
+        <strong data-field="top-three">--</strong>
+      </article>
+    </section>
+
+    <section class="exposure-bars" data-field="bars"></section>
+  </div>
+</section>

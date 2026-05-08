@@ -1,0 +1,61 @@
+<main class="auth-shell" dir="rtl">
+  <div class="auth-shell__grid" aria-hidden="true"></div>
+  <section class="auth-card panel">
+    <div class="auth-card__brand">
+      <span class="auth-card__mark" aria-hidden="true">
+        <i data-lucide="fingerprint"></i>
+      </span>
+      <div>
+        <h1>Portfolio Live</h1>
+        <p>כניסה לחשבון השקעות</p>
+      </div>
+    </div>
+
+    <div class="auth-tabs" role="tablist" aria-label="בחירת פעולה">
+      <button class="auth-tabs__button is-active" type="button" data-mode="login">כניסה</button>
+      <button class="auth-tabs__button" type="button" data-mode="register">חשבון חדש</button>
+    </div>
+
+    <form class="auth-form" data-auth-form>
+      <label class="field auth-form__name" data-register-only>
+        <span>שם לתצוגה</span>
+        <input type="text" name="displayName" autocomplete="name" placeholder="name" />
+      </label>
+
+      <label class="field">
+        <span>אימייל</span>
+        <input type="email" name="email" autocomplete="email" required placeholder="name@example.com" />
+      </label>
+
+      <label class="field" data-password-field>
+        <span data-password-label>סיסמה</span>
+        <input type="password" name="password" autocomplete="current-password" required minlength="8" />
+      </label>
+
+      <label class="field auth-form__reset-token" data-reset-token-field hidden>
+        <span>קוד איפוס</span>
+        <input
+          type="text"
+          name="resetToken"
+          autocomplete="one-time-code"
+          inputmode="numeric"
+          maxlength="6"
+          pattern="[0-9]{6}"
+          placeholder="6 ספרות"
+        />
+      </label>
+
+      <p class="auth-form__notice" data-auth-notice hidden></p>
+      <p class="auth-form__error" data-auth-error hidden></p>
+
+      <button class="button auth-form__submit" type="submit" data-auth-submit>
+        <i data-lucide="log-in"></i>
+        <span data-submit-label>כניסה לחשבון</span>
+      </button>
+
+      <button class="auth-form__reset-link" type="button" data-action="reset-password">
+        איפוס סיסמה
+      </button>
+    </form>
+  </section>
+</main>

@@ -1,0 +1,66 @@
+<div class="app-shell">
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <div class="toast-root" data-component="Toast"></div>
+  <header class="app-shell__header" data-component="Header"></header>
+  <main class="app-shell__main">
+    <section class="workspace-area">
+      <div data-component="MarketRibbon"></div>
+      <div data-component="SummaryCards"></div>
+      <div data-component="HoldingsTable"></div>
+    </section>
+  </main>
+  <nav class="quick-dock" aria-label="פעולות מהירות">
+    <button class="quick-dock__button" type="button" data-action="dock-add" data-requires-portfolio-edit aria-label="הוספת מנייה">
+      <i data-lucide="plus"></i>
+      <span>הוספה</span>
+    </button>
+    <button class="quick-dock__button" type="button" data-action="dock-import" data-requires-portfolio-edit aria-label="ייבוא מאקסל">
+      <i data-lucide="clipboard-paste"></i>
+      <span>ייבוא</span>
+    </button>
+    <button class="quick-dock__button" type="button" data-action="dock-allocation" data-requires-portfolio-edit aria-label="עריכת כל התיק">
+      <i data-lucide="sliders-horizontal"></i>
+      <span>עריכת תיק</span>
+    </button>
+    <button class="quick-dock__button" type="button" data-action="dock-settings" data-requires-portfolio-edit aria-label="הגדרות">
+      <i data-lucide="settings"></i>
+      <span>הגדרות</span>
+    </button>
+  </nav>
+  <section class="app-modal" data-component="HoldingModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-holding" aria-label="סגירת עריכה"></button>
+    <div class="app-modal__panel app-modal__panel--compact" data-component="PortfolioForm"></div>
+  </section>
+  <section class="app-modal" data-component="AllocationModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-allocation" aria-label="סגירת עריכת תיק"></button>
+    <div class="app-modal__panel app-modal__panel--wide" data-component="AllocationPlanner"></div>
+  </section>
+  <section class="app-modal" data-component="ExcelImportModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-excel-import" aria-label="סגירת ייבוא מאקסל"></button>
+    <div class="app-modal__panel app-modal__panel--wide" data-component="ExcelImport"></div>
+  </section>
+  <section class="app-modal" data-component="ExposureModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-exposure" aria-label="סגירת חשיפה"></button>
+    <div class="app-modal__panel app-modal__panel--wide app-modal__panel--insights" data-component="ExposureInsights"></div>
+  </section>
+  <section class="settings-modal" data-component="SettingsModal" hidden>
+    <button class="settings-modal__scrim" type="button" data-action="close-settings" aria-label="סגירת הגדרות"></button>
+    <div class="settings-modal__panel" data-component="SettingsPanel"></div>
+  </section>
+  <section class="app-modal" data-component="PortfolioShareModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-portfolio-share" aria-label="Close portfolio sharing"></button>
+    <div class="app-modal__panel app-modal__panel--compact" data-component="PortfolioShare"></div>
+  </section>
+  <section class="app-modal" data-component="PortfolioRequestsModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-portfolio-requests" aria-label="Close portfolio requests"></button>
+    <div class="app-modal__panel app-modal__panel--compact" data-component="PortfolioRequests"></div>
+  </section>
+  <section class="app-modal" data-component="PortfolioManageModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-portfolio-manage" aria-label="Close portfolio management"></button>
+    <div class="app-modal__panel app-modal__panel--compact" data-component="PortfolioManage"></div>
+  </section>
+  <section class="app-modal" data-component="PortfolioIntelligenceModal" hidden>
+    <button class="app-modal__scrim" type="button" data-action="close-intelligence" aria-label="Close portfolio intelligence"></button>
+    <div class="app-modal__panel app-modal__panel--insights" data-component="PortfolioIntelligence"></div>
+  </section>
+</div>

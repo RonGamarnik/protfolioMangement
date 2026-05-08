@@ -1,0 +1,36 @@
+<section class="holdings-panel panel">
+  <div class="holdings-panel__header">
+    <div class="panel-title">
+      <h2>האחזקות שלי</h2>
+      <p data-field="count">0 מניות</p>
+    </div>
+    <div class="holdings-panel__tools">
+      <button class="ghost-button" type="button" data-action="edit-portfolio">
+        <i data-lucide="sliders-horizontal"></i>
+        עריכת תיק
+      </button>
+    </div>
+  </div>
+
+  <div class="holdings-table-wrap" data-field="table-wrap">
+    <table class="holdings-table">
+      <thead>
+        <tr>
+          <th>פרטים</th>
+          <th><button class="sort-header" type="button" data-sort-key="symbol">סימול <i data-lucide="chevrons-up-down"></i></button></th>
+          <th><button class="sort-header" type="button" data-sort-key="shares">כמות <i data-lucide="chevrons-up-down"></i></button></th>
+          <th>קנייה</th>
+          <th><button class="sort-header" type="button" data-sort-key="invested">השקעה <i data-lucide="chevrons-up-down"></i></button></th>
+          <th>מחיר נוכחי</th>
+          <th><button class="sort-header" type="button" data-sort-key="value">שווי <i data-lucide="chevrons-up-down"></i></button></th>
+          <th><button class="sort-header" type="button" data-sort-key="pnl">רווח/הפסד <i data-lucide="chevrons-up-down"></i></button></th>
+          <th><button class="sort-header" type="button" data-sort-key="daily">יומי <i data-lucide="chevrons-up-down"></i></button></th>
+          <th>חשיפה</th>
+        </tr>
+      </thead>
+      <tbody data-field="rows"></tbody>
+    </table>
+  </div>
+
+  <div data-field="empty"></div>
+</section>

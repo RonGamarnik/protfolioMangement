@@ -1,0 +1,65 @@
+.portfolio-form__body {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.portfolio-form {
+  scroll-margin-top: 18px;
+}
+
+.share-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 48px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(90deg, var(--surface-soft), color-mix(in srgb, var(--accent-soft) 38%, var(--surface))),
+    var(--surface-soft);
+  box-shadow: inset 0 0 22px color-mix(in srgb, var(--accent) 8%, transparent);
+}
+
+.currency-note {
+  min-height: 34px;
+  margin: -4px 0 0;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--blue-soft);
+  color: var(--blue);
+  font-size: 0.82rem;
+  font-weight: 720;
+  line-height: 1.35;
+}
+
+.share-preview span {
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 740;
+}
+
+.share-preview strong {
+  color: var(--ink-strong);
+  direction: ltr;
+  font-size: 1.02rem;
+}
+
+.portfolio-form__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.portfolio-form.is-editing {
+  border-color: color-mix(in srgb, var(--accent) 46%, var(--line));
+  box-shadow: 0 18px 46px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+@media (max-width: 420px) {
+  .portfolio-form__actions {
+    grid-template-columns: 1fr;
+  }
+}

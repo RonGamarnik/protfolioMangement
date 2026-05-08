@@ -1,0 +1,210 @@
+.summary-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.22fr) repeat(4, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.summary-grid.has-ubs-mode {
+  grid-template-columns: repeat(6, minmax(170px, 1fr));
+}
+
+.summary-card {
+  min-width: 0;
+  min-height: 164px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.summary-card::after {
+  content: "";
+  position: absolute;
+  inset: auto 18px 14px;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  opacity: 0.74;
+  box-shadow: 0 0 22px color-mix(in srgb, var(--accent) 34%, transparent);
+}
+
+.summary-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.12), transparent 28%),
+    repeating-linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, 0.035) 18px 19px);
+  opacity: 0.68;
+}
+
+.summary-card--primary {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 18%, transparent), transparent 42%),
+    linear-gradient(145deg, color-mix(in srgb, var(--surface) 92%, transparent), color-mix(in srgb, var(--surface-soft) 78%, transparent));
+}
+
+.summary-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 760;
+}
+
+.summary-card__top svg {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  filter: drop-shadow(0 0 10px color-mix(in srgb, var(--accent) 35%, transparent));
+}
+
+.summary-card strong {
+  display: block;
+  margin-top: 18px;
+  color: var(--ink-strong);
+  font-size: 1.48rem;
+  line-height: 1;
+  font-weight: 850;
+  direction: ltr;
+  text-align: right;
+  unicode-bidi: isolate;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary-card small {
+  display: block;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  direction: ltr;
+  text-align: right;
+  unicode-bidi: isolate;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.summary-card small[data-field="invested-usd"],
+.summary-card small[data-field="invested-ils"] {
+  direction: rtl;
+  unicode-bidi: plaintext;
+}
+
+.summary-card__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  margin-top: 12px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface-soft) 86%, transparent);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 800;
+  direction: ltr;
+}
+
+.summary-card.is-positive::after {
+  background: var(--green);
+}
+
+.summary-card.is-negative::after {
+  background: var(--red);
+}
+
+.summary-card.is-positive .summary-card__badge {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
+.summary-card.is-negative .summary-card__badge {
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.summary-card--ubs {
+  border-color: color-mix(in srgb, var(--accent) 36%, var(--line));
+}
+
+.summary-card--ubs::after {
+  background: linear-gradient(90deg, var(--accent), var(--green));
+}
+
+.summary-card--visual {
+  display: grid;
+  align-content: space-between;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease;
+}
+
+.summary-card--visual:hover,
+.summary-card--visual:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--line));
+  box-shadow: var(--shadow);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.allocation-orbit {
+  display: grid;
+  align-items: center;
+  min-height: 62px;
+}
+
+.allocation-strip {
+  width: 100%;
+  height: 38px;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface-soft);
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.12);
+  transition: background 420ms ease;
+}
+
+.allocation-strip.is-updating {
+  animation: allocation-pulse 520ms ease both;
+}
+
+@keyframes allocation-pulse {
+  from {
+    filter: brightness(1.28);
+  }
+
+  to {
+    filter: brightness(1);
+  }
+}
+
+@media (max-width: 1180px) {
+  .summary-grid,
+  .summary-grid.has-ubs-mode {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .summary-card strong {
+    font-size: 1.36rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-card strong {
+    font-size: 1.3rem;
+  }
+}

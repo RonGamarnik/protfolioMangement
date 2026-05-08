@@ -1,0 +1,88 @@
+.portfolio-share {
+  display: grid;
+  gap: 16px;
+}
+
+.portfolio-share__form {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(120px, 0.8fr) auto;
+  gap: 10px;
+  align-items: end;
+  padding: 18px;
+}
+
+.portfolio-share__form .button {
+  min-height: 44px;
+}
+
+.portfolio-share__list {
+  display: grid;
+  gap: 8px;
+  padding: 0 18px 18px;
+}
+
+.portfolio-share__item,
+.portfolio-share__empty {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface-soft) 84%, transparent);
+}
+
+.portfolio-share__empty {
+  grid-template-columns: 1fr;
+  color: var(--muted);
+  font-weight: 740;
+}
+
+.portfolio-share__identity {
+  display: grid;
+  min-width: 0;
+}
+
+.portfolio-share__identity strong,
+.portfolio-share__identity span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-share__identity strong {
+  color: var(--ink-strong);
+  font-size: 0.9rem;
+}
+
+.portfolio-share__identity span {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.portfolio-share__badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 0 10px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.76rem;
+  font-weight: 840;
+}
+
+@media (max-width: 700px) {
+  .portfolio-share__form {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-share__item {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .portfolio-share__badge {
+    justify-self: start;
+  }
+}

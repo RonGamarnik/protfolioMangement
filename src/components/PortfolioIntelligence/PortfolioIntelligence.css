@@ -1,0 +1,226 @@
+.portfolio-intelligence {
+  overflow: hidden;
+}
+
+.portfolio-intelligence__body {
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+}
+
+.ai-brief {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent-soft) 64%, transparent), transparent),
+    color-mix(in srgb, var(--surface) 84%, transparent);
+}
+
+.ai-brief__header {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+}
+
+.ai-brief__mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, var(--line));
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.ai-brief__mark svg {
+  width: 20px;
+  height: 20px;
+}
+
+.ai-brief__header > div {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.ai-brief__header strong {
+  color: var(--ink-strong);
+  font-size: 1rem;
+}
+
+.ai-brief__header span {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.ai-brief pre {
+  min-height: 130px;
+  max-height: 320px;
+  margin: 0;
+  padding: 14px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 84%, transparent);
+  color: var(--ink);
+  direction: rtl;
+  font-family: inherit;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+
+.intelligence-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.intelligence-block {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--surface) 86%, transparent);
+}
+
+.intelligence-block--wide {
+  grid-column: 1 / -1;
+}
+
+.intelligence-block__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink-strong);
+}
+
+.intelligence-block__title svg {
+  width: 18px;
+  height: 18px;
+  color: var(--accent);
+}
+
+.metric-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.metric-item {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-inline-start: 3px solid var(--blue);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-soft) 82%, transparent);
+}
+
+.metric-item span {
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 760;
+}
+
+.metric-item strong {
+  overflow: hidden;
+  color: var(--ink-strong);
+  direction: ltr;
+  font-size: 0.9rem;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.metric-item.is-ok {
+  border-inline-start-color: var(--green);
+}
+
+.metric-item.is-warning {
+  border-inline-start-color: var(--amber);
+}
+
+.metric-item.is-info {
+  border-inline-start-color: var(--blue);
+}
+
+.rebalance-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.rebalance-item {
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 10px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--surface-soft) 82%, transparent);
+}
+
+.rebalance-item > span {
+  display: grid;
+  place-items: center;
+  height: 42px;
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--accent);
+  direction: ltr;
+  font-weight: 860;
+}
+
+.rebalance-item div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.rebalance-item strong {
+  color: var(--ink-strong);
+  font-size: 0.9rem;
+}
+
+.rebalance-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.rebalance-item.is-warning > span {
+  color: var(--amber);
+}
+
+.rebalance-item.is-ok > span {
+  color: var(--green);
+}
+
+@media (max-width: 760px) {
+  .ai-brief__header {
+    grid-template-columns: 42px minmax(0, 1fr);
+  }
+
+  .ai-brief__header .button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+
+  .intelligence-grid,
+  .metric-list,
+  .rebalance-list {
+    grid-template-columns: 1fr;
+  }
+}

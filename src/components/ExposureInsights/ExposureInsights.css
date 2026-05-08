@@ -1,0 +1,216 @@
+.exposure-insights {
+  overflow: hidden;
+}
+
+.exposure-insights__body {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 18px;
+}
+
+.exposure-hero,
+.exposure-stats,
+.exposure-bars {
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--surface-soft) 86%, transparent), color-mix(in srgb, var(--surface) 76%, transparent)),
+    var(--surface);
+}
+
+.exposure-hero {
+  display: grid;
+  gap: 16px;
+  padding: 18px;
+}
+
+.exposure-chart {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.exposure-chart__pie {
+  width: min(196px, 34vw);
+  aspect-ratio: 1;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface-soft);
+  box-shadow:
+    inset 0 0 0 16px color-mix(in srgb, var(--surface) 82%, transparent),
+    0 20px 50px color-mix(in srgb, var(--accent) 13%, transparent);
+  transition: background 420ms ease;
+}
+
+.exposure-chart__pie--small {
+  width: min(168px, 30vw);
+  box-shadow:
+    inset 0 0 0 14px color-mix(in srgb, var(--surface) 82%, transparent),
+    0 18px 44px color-mix(in srgb, var(--blue) 12%, transparent);
+}
+
+.exposure-chart span,
+.exposure-stats span {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 760;
+}
+
+.exposure-chart strong {
+  display: block;
+  margin-top: 8px;
+  color: var(--ink-strong);
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
+  font-weight: 860;
+  line-height: 1.05;
+}
+
+.exposure-chart em {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  direction: ltr;
+  font-style: normal;
+  font-weight: 780;
+}
+
+.exposure-legend {
+  display: grid;
+  gap: 8px;
+}
+
+.exposure-legend__item {
+  display: grid;
+  grid-template-columns: 11px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  font-size: 0.84rem;
+}
+
+.exposure-legend__item i {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+}
+
+.exposure-legend__item strong {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink-strong);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.exposure-legend__item em,
+.exposure-legend__empty {
+  direction: ltr;
+  font-style: normal;
+  font-weight: 820;
+}
+
+.exposure-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  grid-column: 1 / -1;
+  overflow: hidden;
+}
+
+.exposure-stats article {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px;
+  background: color-mix(in srgb, var(--surface) 66%, transparent);
+}
+
+.exposure-stats strong {
+  overflow: hidden;
+  color: var(--ink-strong);
+  direction: ltr;
+  font-size: clamp(1.05rem, 1.6vw, 1.36rem);
+  font-weight: 860;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.exposure-bars {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 10px;
+  padding: 16px;
+}
+
+.exposure-bar {
+  display: grid;
+  grid-template-columns: minmax(82px, 0.22fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.exposure-bar strong {
+  overflow: hidden;
+  color: var(--ink-strong);
+  direction: ltr;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.exposure-bar__track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--surface-soft);
+}
+
+.exposure-bar__fill {
+  width: var(--value, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--accent), var(--blue));
+  transition: width 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.exposure-bar span {
+  color: var(--muted);
+  direction: ltr;
+  font-size: 0.82rem;
+  font-weight: 820;
+}
+
+@media (max-width: 860px) {
+  .exposure-insights__body {
+    grid-template-columns: 1fr;
+  }
+
+  .exposure-stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .exposure-chart {
+    grid-template-columns: 1fr;
+  }
+
+  .exposure-chart__pie,
+  .exposure-chart__pie--small {
+    width: min(220px, 72vw);
+    justify-self: center;
+  }
+
+  .exposure-bar {
+    grid-template-columns: 1fr auto;
+  }
+
+  .exposure-bar__track {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+}
